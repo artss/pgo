@@ -51,7 +51,7 @@ Thus their models should look like this:
 
 ### Getting objects
 
-To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105) and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L189) methods.
+To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105) and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L188) methods.
 
     User.get({id:3456}, {}, function(user){
         if (!user) return;
