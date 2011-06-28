@@ -51,7 +51,7 @@ Thus their models should look like this:
 
 ### Getting objects
 
-To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105) and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L186) methods.
+To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105) and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L189) methods.
 
     User.get({id:3456}, {}, function(user){
         if (!user) return;
@@ -71,7 +71,7 @@ To get objects from database, use [Model.find()](https://github.com/artss/pgo/bl
 
 ### Creating objects
 
-You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/model.js#L218) instance:
+You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/model.js#L220) instance:
 
     var user = new pgo.Row({login: 'arts', name: 'Artem Sazhin', about: 'Some stuff'});
 
@@ -83,7 +83,7 @@ and manually save it:
         sys.puts('Error:', sys.inspect(e));
     });
 
-or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L200) method:
+or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L202) method:
 
     Post.add({user: user, text: 'Post text'},
         function(post){
