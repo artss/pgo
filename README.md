@@ -54,7 +54,7 @@ Thus their models should look like this:
 ### Getting objects
 
 To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105)
-and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L188) methods.
+and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L187) methods.
 These methods work similarly, but .get() returns single Row instance instead of rows list.
 
 #### Methods' arguments:
