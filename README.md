@@ -9,6 +9,8 @@ PGO is quite simple and easy to use. To start using it, just do it:
 
     var pgo = require('pgo');
 
+    var db = new pgo.Db('tcp://user:password@host.tld/database');
+
 ### Creating models
 
 Suppose we have two tables:
@@ -121,7 +123,7 @@ These methods work similarly, but .get() returns single Row instance instead of 
 
 ### Creating objects
 
-You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/model.js#L220) instance:
+You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/model.js#L222) instance:
 
     var user = new pgo.Row({login: 'arts', name: 'Artem Sazhin', about: 'Some stuff'});
 
@@ -133,7 +135,7 @@ and manually save it:
         sys.puts('Error:', sys.inspect(e));
     });
 
-or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L202) method:
+or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L201) method:
 
     Post.add({user: user, text: 'Post text'},
         function(post){
@@ -141,4 +143,18 @@ or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/mod
         }, function(e){
             sys.puts('Error:', sys.inspect(e));
         });
+
+### Updating objects
+
+[Row.save()](https://github.com/artss/pgo/blob/master/lib/model.js#L238)
+also saves the existing rows (checks if primary key (usually 'id' field) is set).
+
+    User.get({id: 3456}, {}, function(user){
+        if (user) {
+            user.about = 'Changed description';
+            user.save(function(){
+                sys.puts('User updated: '+sys.inspect(user));
+            }, errback);
+        }
+    }, errback);
 
