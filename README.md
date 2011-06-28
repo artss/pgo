@@ -51,7 +51,57 @@ Thus their models should look like this:
 
 ### Getting objects
 
-To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105) and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L188) methods.
+To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105)
+and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L188) methods.
+These methods work similarly, but .get() returns single Row instance instead of rows list.
+
+#### Methods' arguments:
+
+1. **params** — Query conditions. Examples:
+
+ * Equality:
+
+            {"name": "username"}                        name = 'username'
+            {"id": [1, 2, 3, 4]}                        id in (1, 2, 3, 4)
+
+ * Inequality:
+
+            {"$not": {"name": "username"}}              name != 'username'
+            {"$not": {"id": [1, 2, 3, 4]}}              id not in (1, 2, 3, 4)
+
+ * Disjunction:
+
+            {"$or": {"name": "username", "id": 1}}      name = 'username' or id=1
+
+ * Conditional operators:
+
+            {"$lt": {"age": 29}}                        age < 29
+            {"$gt": {"birthdate": "1982-01-23"}}        birthdate > '1982-01-23'
+
+2. **options** — Query options.
+
+ * Limit/offset:
+
+            {"limit": 10}                               limit 10
+            {"offset": 100}                             offset 100
+
+ * Rows order:
+
+            {"order": "birthdate"}                      order by birthdate asc
+
+        or
+
+            {"order": "-birthdate"}                     order by birthdate desc
+
+    for ordering by multiple columns:
+
+            {"order": ["-birthdate", "name"]}           order by birthdate desc, name asc
+
+3. **callback** — Function that should be called when the query is finished. Adopts the list of rows.
+
+4. **errback** — Function that shoud be called if the query fails. Adopts the error object.
+
+#### Example
 
     User.get({id:3456}, {}, function(user){
         if (!user) return;
