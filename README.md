@@ -93,7 +93,7 @@ These methods work similarly, but .get() returns single Row instance instead of 
 
             {"order": "-birthdate"}                     order by birthdate desc
 
-    for ordering by multiple columns:
+        for ordering by multiple columns:
 
             {"order": ["-birthdate", "name"]}           order by birthdate desc, name asc
 
