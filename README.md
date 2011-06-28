@@ -51,6 +51,8 @@ Thus their models should look like this:
 
 ### Getting objects
 
+To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105) and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L186) methods.
+
     User.get({id:3456}, {}, function(user){
         if (!user) return;
         sys.puts('User: '+sys.inspect(user));
@@ -69,14 +71,19 @@ Thus their models should look like this:
 
 ### Creating objects
 
+You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/model.js#L218) instance:
+
     var user = new pgo.Row({login: 'arts', name: 'Artem Sazhin', about: 'Some stuff'});
+
+and manually save it:
+
     user.save(function(){
         sys.puts('User '+user.login+' successfully created at '+user.created);
     }, function(e){
         sys.puts('Error:', sys.inspect(e));
     });
 
-or:
+or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L200) method:
 
     Post.add({user: user, text: 'Post text'},
         function(post){
