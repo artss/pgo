@@ -53,8 +53,8 @@ Thus their models should look like this:
 
 ### Getting objects
 
-To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L105)
-and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L187) methods.
+To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L107)
+and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L193) methods.
 These methods work similarly, but .get() returns single Row instance instead of rows list.
 
 #### Methods' arguments:
@@ -135,7 +135,7 @@ and manually save it:
         sys.puts('Error:', sys.inspect(e));
     });
 
-or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L208) method:
+or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L207) method:
 
     Post.add({user: user, text: 'Post text'},
         function(post){
