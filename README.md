@@ -123,7 +123,7 @@ These methods work similarly, but .get() returns single Row instance instead of 
 
 ### Creating objects
 
-You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/model.js#L237) instance:
+You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/row.js) instance:
 
     var user = new pgo.Row({login: 'arts', name: 'Artem Sazhin', about: 'Some stuff'});
 
@@ -135,7 +135,7 @@ and manually save it:
         sys.puts('Error:', sys.inspect(e));
     });
 
-or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L201) method:
+or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L208) method:
 
     Post.add({user: user, text: 'Post text'},
         function(post){
@@ -146,7 +146,7 @@ or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/mod
 
 ### Updating objects
 
-[Row.save()](https://github.com/artss/pgo/blob/master/lib/model.js#L253)
+[Row.save()](https://github.com/artss/pgo/blob/master/lib/row.js#L26)
 also saves the existing rows (checks if primary key (usually 'id' field) is set).
 
     User.get({id: 3456}, {}, function(user){
@@ -160,13 +160,13 @@ also saves the existing rows (checks if primary key (usually 'id' field) is set)
 
 ### Deleting objects
 
-To delete a row, you can use either [Model.delete()](https://github.com/artss/pgo/blob/master/lib/model.js#L216):
+To delete multiple rows, you can use [Model.delete()](https://github.com/artss/pgo/blob/master/lib/model.js#L222):
 
-    User.delete(user, function(user){
-        sys.puts('User deleted: '+sys.inspect(user));
+    User.delete({id: [10001, 10002]}, function(posts){
+        sys.puts('Posts deleted: '+sys.inspect(posts));
     }, errback);
 
-or [Row.delete()](https://github.com/artss/pgo/blob/master/lib/model.js#L343):
+To delete a single row, just call [Row.delete()](https://github.com/artss/pgo/blob/master/lib/row.js#L116) method:
 
     user.delete(function(user){
         sys.puts('User deleted: '+sys.inspect(user));
@@ -174,6 +174,6 @@ or [Row.delete()](https://github.com/artss/pgo/blob/master/lib/model.js#L343):
 
 *Note: primary key must be set in the object.*
 
-The row will be deleted from database, but will still be stored in variable,
+The rows will be deleted from database, but still will be available through the object passed to callback,
 so you can restore it if you need.
 
