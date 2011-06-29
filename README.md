@@ -80,6 +80,8 @@ These methods work similarly, but .get() returns single Row instance instead of 
             {"$lt": {"age": 29}}                        age < 29
             {"$gt": {"birthdate": "1982-01-23"}}        birthdate > '1982-01-23'
 
+    Of course, you can combine them.
+
 2. **options** — Query options.
 
  * Limit/offset:
