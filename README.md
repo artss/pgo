@@ -53,8 +53,8 @@ Thus their models should look like this:
 
 ### Getting objects
 
-To get objects from database, use [Model.find()](https://github.com/artss/pgo/blob/master/lib/model.js#L107)
-and [Model.get()](https://github.com/artss/pgo/blob/master/lib/model.js#L193) methods.
+To get objects from database, use [Model](https://github.com/artss/pgo/wiki/Model).find()
+and [Model](https://github.com/artss/pgo/wiki/Model).get() methods.
 These methods work similarly, but .get() returns single Row instance instead of rows list.
 
 #### Example
@@ -84,7 +84,7 @@ These methods work similarly, but .get() returns single Row instance instead of 
 
 ### Creating objects
 
-You can manually create a [Row](https://github.com/artss/pgo/blob/master/lib/row.js) instance:
+You can manually create a [Row](https://github.com/artss/pgo/wiki/Row) instance:
 
     var user = new pgo.Row({login: 'arts', name: 'Artem Sazhin', about: 'Some stuff'});
 
@@ -98,7 +98,7 @@ and manually save it:
             sys.puts('Error:', sys.inspect(e));
         });
 
-or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/model.js#L207) method:
+or pass object to [Model](https://github.com/artss/pgo/wiki/Model).add() method:
 
     Post.add({user: user, text: 'Post text'})
         .on('end', function(post){
@@ -110,7 +110,7 @@ or pass object to [Model.add()](https://github.com/artss/pgo/blob/master/lib/mod
 
 ### Updating objects
 
-[Row.save()](https://github.com/artss/pgo/blob/master/lib/row.js#L26)
+[Row](https://github.com/artss/pgo/wiki/Row).save()
 also saves the existing rows (checks if primary key (usually 'id' field) is set).
 
     User.get({id: 3456}, {})
@@ -128,7 +128,7 @@ also saves the existing rows (checks if primary key (usually 'id' field) is set)
 
 ### Deleting objects
 
-To delete multiple rows, you can use [Model.delete()](https://github.com/artss/pgo/blob/master/lib/model.js#L222):
+To delete multiple rows, you can use [Model](https://github.com/artss/pgo/wiki/Model).delete():
 
     User.delete({id: [10001, 10002]})
         .on('end', function(){
@@ -136,7 +136,7 @@ To delete multiple rows, you can use [Model.delete()](https://github.com/artss/p
         })
         .on('error', errback);
 
-To delete a single row, just call [Row.delete()](https://github.com/artss/pgo/blob/master/lib/row.js#L116) method:
+To delete a single row, just call [Row](https://github.com/artss/pgo/wiki/Row).delete() method:
 
     user.delete()
         .on('end', function(user){
